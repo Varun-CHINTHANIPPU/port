@@ -1,0 +1,8 @@
+Text slightly “decrypts” on hover
+Underline animates like a signal pulse
+Links shift from gray → accent color smoothly
+“Typing → Stabilizing” Text Very fast (0.6–1s), not slow typing animation.
+Signal Pulse Divider
+Subtle Glitch (VERY controlled)
+Scroll-Based Reveal (Best one)
+
