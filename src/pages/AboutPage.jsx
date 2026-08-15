@@ -1,10 +1,8 @@
 import React, { useEffect } from 'react';
 import { initialPortfolioData } from '../data/portfolioData';
-import { HeroSection } from '../components/hero/HeroSection';
 import { AboutSection } from '../components/about/AboutSection';
-import { ActivitySection } from '../components/activity/ActivitySection';
 
-export const HomePage = () => {
+export const AboutPage = () => {
   const data = initialPortfolioData;
 
   useEffect(() => {
@@ -12,21 +10,14 @@ export const HomePage = () => {
   }, []);
 
   return (
-    <div className="animate-fadeIn">
-      {/* 1. Hero Section */}
-      <HeroSection profile={data.profile} />
-
-      {/* 2. About Me, Education & Accreditations */}
+    <div className="pt-28 sm:pt-36 pb-20 animate-fadeIn">
       <AboutSection 
         profile={data.profile} 
         certifications={data.certifications} 
         leadership={data.leadership} 
       />
-
-      {/* 3. Live Platform Activity */}
-      <ActivitySection />
     </div>
   );
 };
 
-export default HomePage;
+export default AboutPage;

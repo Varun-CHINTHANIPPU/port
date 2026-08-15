@@ -1,112 +1,85 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-
-      if (!isHomePage) return;
-
-      const sections = ['home', 'work', 'research', 'about', 'activity'];
-      const scrollPos = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHomePage]);
-
-  // Primary navigation: Work, Research, About, Activity
+  // Exact 4 primary navigation items: Work, Research, Blogs, Contact
   const navLinks = [
-    { label: 'Work', href: '/#work', id: 'work' },
-    { label: 'Research', href: '/#research', id: 'research' },
-    { label: 'About', href: '/#about', id: 'about' },
-    { label: 'Activity', href: '/#activity', id: 'activity' },
+    { label: 'Work', path: '/work' },
+    { label: 'Research', path: '/research' },
+    { label: 'Blogs', path: '/blogs' },
+    { label: 'Contact', path: '/contact' },
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-200 ${
-      isScrolled 
-        ? 'bg-[#09090b]/94 backdrop-blur-md border-b border-zinc-800/80 py-5 sm:py-6 shadow-sm' 
-        : 'bg-transparent py-7 sm:py-8'
-    }`}>
+    <header className="sticky top-0 z-50 w-full bg-[#09090b]/96 backdrop-blur-md py-6 sm:py-7">
       <div className="personal-container flex items-center justify-between">
         
-        {/* Name Brand */}
+        {/* Large, Prominent Brand Name */}
         <Link 
           to="/" 
-          className="text-zinc-100 font-semibold tracking-tight text-lg sm:text-xl hover:text-white transition-colors"
+          className="text-white font-extrabold tracking-tight text-2xl sm:text-3xl lg:text-4xl hover:text-zinc-200 transition-colors"
         >
           Varun Chinthanippu
         </Link>
 
-        {/* Desktop Navigation Links (15.5px typography) */}
-        <nav className="hidden md:flex items-center gap-9 lg:gap-10 text-[15.5px] font-normal">
-          {navLinks.map((item) => {
-            const isActive = isHomePage && activeSection === item.id;
-            return (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`transition-colors py-1 relative ${
+        {/* Desktop Primary Navigation with Larger, Readable Typography */}
+        <nav className="hidden md:flex items-center gap-10 lg:gap-14 text-[18px] sm:text-[20px] lg:text-[21px] font-semibold">
+          {navLinks.map((item) => (
+            <NavLink
+              key={item.label}
+              to={item.path}
+              className={({ isActive }) =>
+                `transition-colors py-2 relative ${
                   isActive 
-                    ? 'text-white font-medium' 
+                    ? 'text-white font-bold' 
                     : 'text-zinc-400 hover:text-zinc-100'
-                }`}
-              >
-                <span>{item.label}</span>
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-zinc-300 rounded-full" />
-                )}
-              </a>
-            );
-          })}
+                }`
+              }
+            >
+              {({ isActive }) => (
+                <>
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-white rounded-full" />
+                  )}
+                </>
+              )}
+            </NavLink>
+          ))}
         </nav>
 
         {/* Mobile Menu Button */}
         <div className="md:hidden flex items-center">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-zinc-300 hover:text-white cursor-pointer"
+            className="p-2.5 text-zinc-300 hover:text-white cursor-pointer"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#09090b] border-b border-zinc-800 px-7 py-6 mt-3 shadow-xl">
-          <div className="flex flex-col gap-4 text-base">
+        <div className="md:hidden bg-[#09090b] border-b border-zinc-800 px-7 py-8 mt-3 shadow-2xl">
+          <div className="flex flex-col gap-5 text-xl">
             {navLinks.map((item) => (
-              <a
+              <NavLink
                 key={item.label}
-                href={item.href}
+                to={item.path}
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-zinc-300 hover:text-white py-1.5 text-[16px]"
+                className={({ isActive }) =>
+                  `py-2.5 text-[20px] transition-colors ${
+                    isActive ? 'text-white font-bold' : 'text-zinc-300 hover:text-white'
+                  }`
+                }
               >
                 {item.label}
-              </a>
+              </NavLink>
             ))}
           </div>
         </div>

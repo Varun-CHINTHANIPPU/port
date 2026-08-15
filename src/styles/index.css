@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  /* Coherent Spacing System */
+  /* Layout Spacing Architecture */
+  --header-content-gap: 3.75rem;       /* 60px breathing room between navbar bottom and content start */
+  --header-content-gap-mobile: 2.25rem;/* 36px on mobile */
+  --section-gap: 5.5rem;               /* 88px between major sections */
+  --section-gap-mobile: 3.5rem;        /* 56px on mobile */
+
   --space-2xs: 0.25rem;  /* 4px */
   --space-xs: 0.5rem;    /* 8px */
   --space-sm: 0.75rem;   /* 12px */
   --space-md: 1rem;      /* 16px */
   --space-lg: 1.5rem;    /* 24px (Standard card-to-card gap) */
-  --space-xl: 2rem;      /* 32px (Header to content gap) */
-  --space-2xl: 3rem;     /* 48px */
-  --space-3xl: 5.5rem;   /* 88px (Unified Section Vertical Padding) */
+  --space-xl: 2.25rem;   /* 36px (Header to content gap) */
+  --space-2xl: 3.5rem;   /* 56px */
 
-  /* Minimal, Calm Editorial Palette */
+  /* Minimal, Calm Editorial Palette (85-90% Monochrome Base) */
   --bg-main: #09090b;
   --bg-surface: #121318;
   --bg-surface-elevated: #17181f;
   --bg-surface-subtle: #1e1f28;
 
   --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-medium: rgba(255, 255, 255, 0.18);
-
-  --accent: #10b981;
+  --border-hover: rgba(255, 255, 255, 0.16);
 
   --text-primary: #f4f4f5;
   --text-secondary: #a1a1aa;
@@ -63,7 +65,24 @@ body {
   font-family: var(--font-mono);
 }
 
-/* Coherent Centered Container (Unified 1040px max-width across all sections) */
+/* App Shell Layout: Controls structural relationship between Header and Main globally */
+.site-main {
+  position: relative;
+  z-index: 10;
+  flex: 1 1 0%;
+  width: 100%;
+  padding-top: var(--header-content-gap);
+  padding-bottom: var(--section-gap);
+}
+
+@media (max-width: 640px) {
+  .site-main {
+    padding-top: var(--header-content-gap-mobile);
+    padding-bottom: var(--section-gap-mobile);
+  }
+}
+
+/* Unified Centered Container (Max-width 1040px) */
 .personal-container {
   width: 100%;
   max-width: 1040px;
@@ -87,23 +106,76 @@ body {
   }
 }
 
-/* Section Rhythm Class (Driven by intentional whitespace, no arbitrary borders) */
+/* Hero Section Hierarchy */
+.hero-section {
+  padding-bottom: var(--section-gap);
+}
+
+.hero-heading {
+  font-size: 2.25rem;
+  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .hero-heading {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-heading {
+    font-size: 3.5rem;
+  }
+}
+
+.hero-role {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: #a1a1aa;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .hero-role {
+    font-size: 1.125rem;
+  }
+}
+
+.hero-description {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #d4d4d8;
+  font-weight: 400;
+  max-width: 44rem;
+}
+
+@media (min-width: 640px) {
+  .hero-description {
+    font-size: 1.15rem;
+  }
+}
+
+/* Section Rhythm Class */
 .section-wrapper {
-  padding-top: var(--space-3xl);
-  padding-bottom: var(--space-3xl);
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
 }
 
 @media (max-width: 640px) {
   .section-wrapper {
-    padding-top: 4rem;
-    padding-bottom: 4rem;
+    padding-top: var(--section-gap-mobile);
+    padding-bottom: var(--section-gap-mobile);
   }
 }
 
 /* Section Header Spacing */
 .section-header {
   margin-bottom: var(--space-xl);
-  max-width: 36rem;
+  max-width: 38rem;
 }
 
 /* Guaranteed 24px Gap on Card Lists */
@@ -114,19 +186,20 @@ body {
   width: 100%;
 }
 
-/* Independent Editorial Card */
+/* Independent Editorial Card with Physical Lift & Light Reflection */
 .editorial-card {
   display: block;
   background-color: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: 14px;
   padding: 28px 32px;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
   width: 100%;
 }
 
 .editorial-card:hover {
-  border-color: var(--border-medium);
+  border-color: var(--border-hover);
+  transform: translateY(-2.5px);
 }
 
 @media (max-width: 640px) {
@@ -140,13 +213,13 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.65rem 1.25rem;
-  font-size: 0.9rem;
+  padding: 0.55rem 1.15rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-primary);
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
-  border-radius: 9px;
+  border-radius: 8px;
   cursor: pointer;
   transition: all 0.15s ease;
   text-decoration: none;
@@ -154,7 +227,7 @@ body {
 
 .clean-btn:hover {
   background: var(--bg-surface-subtle);
-  border-color: var(--border-medium);
+  border-color: var(--border-hover);
   color: #ffffff;
 }
 
@@ -168,7 +241,22 @@ body {
 .clean-btn-primary:hover {
   background: #f4f4f5;
   color: #000000;
-  border-color: #ffffff;
+}
+
+/* Subtle SPA View Transition (250ms) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Custom Minimal Scrollbar */

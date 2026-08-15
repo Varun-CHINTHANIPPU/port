@@ -1,16 +1,14 @@
 import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, GitBranch, ExternalLink } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { ArrowLeft, ArrowRight, GitBranch } from 'lucide-react';
 import { initialPortfolioData } from '../data/portfolioData';
 import { Tls13HandshakeSimulator } from '../components/work/Tls13HandshakeSimulator';
 
 export const ProjectDetailPage = () => {
   const { projectId } = useParams();
-  const navigate = useNavigate();
 
   const projects = initialPortfolioData.projects;
   
-  // Find project by id or category slug
   const projectIndex = projects.findIndex(
     p => p.id === projectId || p.id.replace(/-/g, '') === projectId?.replace(/-/g, '')
   );
@@ -18,32 +16,31 @@ export const ProjectDetailPage = () => {
   const project = projectIndex !== -1 ? projects[projectIndex] : projects[0];
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
-  // Scroll to top on navigation
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [projectId]);
 
   if (!project) {
     return (
-      <div className="personal-container py-32 text-center space-y-4">
+      <div className="personal-container py-36 text-center space-y-4">
         <h2 className="text-2xl font-bold text-white">Project Not Found</h2>
-        <Link to="/" className="text-zinc-400 hover:text-white underline">Return Home</Link>
+        <Link to="/work" className="text-zinc-400 hover:text-white underline">Return to Work</Link>
       </div>
     );
   }
 
   return (
-    <article className="min-h-screen bg-[#09090b] text-zinc-100 font-sans pt-32 pb-32">
+    <article className="min-h-screen bg-[#09090b] text-zinc-100 font-sans animate-fadeIn">
       <div className="personal-container max-w-[860px] space-y-16">
         
         {/* Back Link */}
         <div>
           <Link
-            to="/#work"
+            to="/work"
             className="inline-flex items-center gap-2 text-sm font-mono text-zinc-400 hover:text-white transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
-            <span>Back to Selected Work</span>
+            <span>Back to Work</span>
           </Link>
         </div>
 
@@ -184,18 +181,18 @@ export const ProjectDetailPage = () => {
         {/* Next / Related Project Navigation */}
         <footer className="pt-12 border-t border-zinc-850 flex flex-col sm:flex-row items-center justify-between gap-6 font-sans">
           <Link
-            to="/#work"
+            to="/work"
             className="text-zinc-400 hover:text-white text-sm font-medium transition-colors"
           >
-            ← Back to all projects
+            ← Back to Work
           </Link>
 
           {nextProject && (
             <Link
               to={`/work/${nextProject.id}`}
-              className="editorial-link flex items-center gap-2 text-zinc-200 hover:text-white group"
+              className="flex items-center gap-2 text-zinc-200 hover:text-white group text-sm"
             >
-              <span className="text-sm">Next Project: <strong>{nextProject.title}</strong></span>
+              <span>Next Project: <strong>{nextProject.title}</strong></span>
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           )}

@@ -1,28 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
+import { initialPortfolioData } from '../../data/portfolioData';
 import { LightReflectiveCard } from '../common/LightReflectiveCard';
 
 export const ResearchSection = () => {
-  const researchPapers = [
-    {
-      year: "2025",
-      title: "Privacy-Preserving Verification with zk-SNARKs",
-      summary: "A study of arithmetic circuits, Groth16, Circom, and client-side zero-knowledge proof generation without secret disclosure.",
-      link: "https://github.com/varunchinthanippu/zk-snark-privacy-proofs"
-    },
-    {
-      year: "2025",
-      title: "Hybrid TLS 1.3 and Post-Quantum Migration",
-      summary: "An investigation into ML-KEM (Kyber-768/1024), hybrid key exchange with Curve25519, packet fragmentation, and handshake latency.",
-      link: "https://github.com/varunchinthanippu/pqc-hybrid-migration-analysis"
-    },
-    {
-      year: "2024",
-      title: "RFC 5280 Compliance and Certificate Transparency",
-      summary: "An architectural breakdown of X.509 v3 extension constraints (BasicConstraints, KeyUsage) and Certificate Transparency auditing.",
-      link: "https://github.com/varunchinthanippu/x509-rfc5280-compliance"
-    }
-  ];
+  const researchPapers = initialPortfolioData.research;
 
   return (
     <section id="research" className="section-wrapper">
@@ -34,45 +17,55 @@ export const ResearchSection = () => {
             Research &amp; Notes
           </span>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            Topics I Am Currently Exploring
+            Cryptographic &amp; Protocol Research
           </h2>
           <p className="text-zinc-400 text-base leading-relaxed">
-            Notes and investigations on zero-knowledge proofs, post-quantum key exchange, 
-            and certificate trust models.
+            Formal studies on zero-knowledge proofs, post-quantum key encapsulation migration, 
+            and X.509 certificate trust models.
           </p>
         </div>
 
         {/* Guaranteed 24px Gap on Card List */}
         <div className="card-list">
-          {researchPapers.map((paper, idx) => (
-            <LightReflectiveCard
-              key={idx}
-              className="flex flex-col sm:flex-row sm:items-start justify-between gap-6"
+          {researchPapers.map((paper) => (
+            <Link
+              key={paper.id}
+              to={`/research/${paper.id}`}
+              className="block no-underline"
             >
-              <div className="space-y-2 max-w-2xl">
-                <span className="text-xs font-mono text-zinc-500">
-                  {paper.year}
-                </span>
-
-                <h3 className="text-xl font-bold text-zinc-100">
-                  {paper.title}
-                </h3>
-
-                <p className="text-zinc-300 text-base leading-relaxed font-normal">
-                  {paper.summary}
-                </p>
-              </div>
-
-              <a
-                href={paper.link}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs font-mono text-zinc-400 hover:text-zinc-100 flex items-center gap-1.5 transition-colors shrink-0 self-start sm:self-center font-medium"
+              <LightReflectiveCard
+                className="flex flex-col sm:flex-row sm:items-start justify-between gap-6 group cursor-pointer"
               >
-                <span>Read paper</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
-              </a>
-            </LightReflectiveCard>
+                <div className="space-y-2 max-w-2xl">
+                  <div className="flex items-center gap-2 text-xs font-mono text-zinc-500">
+                    <span>{paper.year}</span>
+                    <span>·</span>
+                    <span>{paper.area}</span>
+                  </div>
+
+                  <h3 className="text-xl font-bold text-zinc-100 group-hover:text-white transition-colors">
+                    {paper.title}
+                  </h3>
+
+                  <p className="text-zinc-300 text-base leading-relaxed font-normal">
+                    {paper.abstract}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2 pt-2 text-xs font-mono text-zinc-500">
+                    {paper.technologies.slice(0, 3).map((t, i) => (
+                      <span key={i} className="text-zinc-400">
+                        #{t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="text-xs font-mono text-zinc-400 group-hover:text-zinc-100 flex items-center gap-1.5 transition-colors shrink-0 self-start sm:self-center font-medium">
+                  <span>Read paper</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </div>
+              </LightReflectiveCard>
+            </Link>
           ))}
         </div>
 
@@ -80,3 +73,5 @@ export const ResearchSection = () => {
     </section>
   );
 };
+
+export default ResearchSection;
