@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowDown } from 'lucide-react';
 import { SignatureDecryptionTitle } from '../common/SignatureDecryptionTitle';
 
 export const HeroSection = ({ profile }) => {
@@ -25,11 +24,11 @@ export const HeroSection = ({ profile }) => {
           <div className="text-base sm:text-lg">
             <SignatureDecryptionTitle 
               targetText="Applied Cryptography & Systems Engineering" 
-              durationMs={750} 
+              durationMs={800} 
             />
           </div>
 
-          {/* Concise Narrative */}
+          {/* Concise Narrative (Ends naturally without buttons) */}
           <p className="text-zinc-300 text-base sm:text-lg leading-relaxed font-normal">
             I work across software, applied cryptography, and systems security. 
             I'm interested in understanding how things work beneath the abstractions—from 
@@ -38,27 +37,11 @@ export const HeroSection = ({ profile }) => {
             emulators and post-quantum lattice primitives.
           </p>
 
-          {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-4 pt-2 text-sm">
-            <a
-              href="#work"
-              className="clean-btn clean-btn-primary py-2.5 px-5 text-sm cursor-pointer"
-            >
-              <span>Selected Work</span>
-              <ArrowDown className="w-3.5 h-3.5" />
-            </a>
-
-            <a
-              href="#research"
-              className="clean-btn py-2.5 px-5 text-sm cursor-pointer"
-            >
-              <span>Research</span>
-            </a>
-          </div>
-
         </div>
 
       </div>
     </section>
   );
 };
+
+export default HeroSection;

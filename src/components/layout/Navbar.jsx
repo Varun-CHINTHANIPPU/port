@@ -1,16 +1,21 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['home', 'work', 'research', 'about', 'activity', 'elsewhere'];
+      if (!isHomePage) return;
+
+      const sections = ['home', 'work', 'research', 'about', 'activity'];
       const scrollPos = window.scrollY + 200;
 
       for (const section of sections) {
@@ -28,14 +33,14 @@ export const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHomePage]);
 
+  // Primary navigation: Work, Research, About, Activity
   const navLinks = [
-    { label: 'Work', href: '#work', id: 'work' },
-    { label: 'Research', href: '#research', id: 'research' },
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Activity', href: '#activity', id: 'activity' },
-    { label: 'Elsewhere', href: '#elsewhere', id: 'elsewhere' },
+    { label: 'Work', href: '/#work', id: 'work' },
+    { label: 'Research', href: '/#research', id: 'research' },
+    { label: 'About', href: '/#about', id: 'about' },
+    { label: 'Activity', href: '/#activity', id: 'activity' },
   ];
 
   return (
@@ -46,18 +51,18 @@ export const Navbar = () => {
     }`}>
       <div className="personal-container flex items-center justify-between">
         
-        {/* Name Brand with high presence */}
-        <a 
-          href="#home" 
+        {/* Name Brand */}
+        <Link 
+          to="/" 
           className="text-zinc-100 font-semibold tracking-tight text-lg sm:text-xl hover:text-white transition-colors"
         >
           Varun Chinthanippu
-        </a>
+        </Link>
 
-        {/* Desktop Navigation Links (15.5px font, generous gaps) */}
+        {/* Desktop Navigation Links (15.5px typography) */}
         <nav className="hidden md:flex items-center gap-9 lg:gap-10 text-[15.5px] font-normal">
           {navLinks.map((item) => {
-            const isActive = activeSection === item.id;
+            const isActive = isHomePage && activeSection === item.id;
             return (
               <a
                 key={item.label}
@@ -109,3 +114,5 @@ export const Navbar = () => {
     </header>
   );
 };
+
+export default Navbar;

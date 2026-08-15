@@ -16,11 +16,11 @@ export const AboutSection = ({ profile, certifications }) => {
           </h2>
         </div>
 
-        {/* Narrative & Education */}
+        {/* Narrative & Education Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
           {/* Left Column: Narrative */}
-          <div className="lg:col-span-7 space-y-5 text-zinc-300 text-base leading-relaxed">
+          <div className="lg:col-span-7 space-y-5 text-zinc-300 text-base sm:text-lg leading-relaxed">
             <p>
               I am an engineering student and software builder based in Hyderabad, India. 
               I am currently pursuing my B.Tech in Computer Science Engineering at Anurag University.
@@ -38,40 +38,42 @@ export const AboutSection = ({ profile, certifications }) => {
               where I organize technical workshops and bootcamps on systems programming and cybersecurity.
             </p>
 
-            <p className="text-zinc-400 text-sm">
+            <p className="text-zinc-400 text-sm sm:text-base">
               Currently, I am exploring post-quantum lattice-based key encapsulation (ML-KEM/Kyber) and 
               zero-knowledge succinct arguments of knowledge (zk-SNARKs).
             </p>
           </div>
 
-          {/* Right Column: Education & Accreditations */}
+          {/* Right Column: Education & Clear Accreditations */}
           <div className="lg:col-span-5 space-y-6">
             
             {/* Education Box */}
-            <LightReflectiveCard className="p-6 sm:p-7 space-y-2 font-mono text-xs">
-              <span className="text-zinc-500 uppercase text-[10px] tracking-wider">Education</span>
-              <div className="text-zinc-100 font-bold text-base font-sans">
+            <LightReflectiveCard className="p-7 space-y-2.5">
+              <span className="text-zinc-500 font-mono uppercase text-xs tracking-wider">Education</span>
+              <div className="text-zinc-100 font-bold text-lg sm:text-xl font-sans leading-snug">
                 {profile.education.degree}
               </div>
-              <div className="text-zinc-400">
-                {profile.education.institution} · {profile.education.period}
+              <div className="text-zinc-300 text-sm font-normal">
+                {profile.education.institution} · <span className="text-zinc-500 font-mono text-xs">{profile.education.period}</span>
               </div>
-              <div className="text-zinc-500 text-xs pt-1 font-sans">
+              <div className="text-zinc-400 text-xs sm:text-sm pt-1 leading-relaxed font-sans">
                 {profile.education.details}
               </div>
             </LightReflectiveCard>
 
-            {/* Certifications (Compact Secondary List) */}
-            <LightReflectiveCard className="p-6 sm:p-7 space-y-3 font-mono text-xs">
-              <span className="text-zinc-500 uppercase text-[10px] tracking-wider block">Accreditations</span>
-              <div className="space-y-2.5 text-xs">
+            {/* Accreditations with Clear, Readable Typography */}
+            <LightReflectiveCard className="p-7 space-y-4">
+              <span className="text-zinc-500 font-mono uppercase text-xs tracking-wider block">Selected Accreditations</span>
+              <div className="space-y-4">
                 {certifications.slice(0, 4).map((cert) => (
-                  <div key={cert.badgeId} className="flex items-start justify-between gap-2 border-b border-zinc-900 pb-2 last:border-0 last:pb-0">
-                    <div>
-                      <div className="text-zinc-200 font-sans font-medium">{cert.title}</div>
-                      <div className="text-zinc-500">{cert.issuer}</div>
+                  <div key={cert.badgeId} className="space-y-1 border-b border-zinc-850 pb-3 last:border-0 last:pb-0">
+                    <div className="text-zinc-100 font-sans font-medium text-sm sm:text-base leading-snug">
+                      {cert.title}
                     </div>
-                    <span className="text-zinc-500 shrink-0">{cert.year}</span>
+                    <div className="flex items-center justify-between text-xs font-mono text-zinc-400">
+                      <span>{cert.issuer}</span>
+                      <span className="text-zinc-500">{cert.year}</span>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -85,3 +87,5 @@ export const AboutSection = ({ profile, certifications }) => {
     </section>
   );
 };
+
+export default AboutSection;

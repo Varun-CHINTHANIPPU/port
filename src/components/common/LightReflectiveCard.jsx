@@ -52,3 +52,5 @@ export const LightReflectiveCard = ({
     </Component>
   );
 };
+
+export default LightReflectiveCard;

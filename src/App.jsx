@@ -1,55 +1,34 @@
 import React, { useState } from 'react';
-import { initialPortfolioData } from './data/portfolioData';
+import { Routes, Route } from 'react-router-dom';
 import { SimpleLoadingScreen } from './components/intro/SimpleLoadingScreen';
 import { Navbar } from './components/layout/Navbar';
-import { HeroSection } from './components/hero/HeroSection';
-import { ProjectsSection } from './components/projects/ProjectsSection';
-import { ResearchSection } from './components/research/ResearchSection';
-import { AboutSection } from './components/about/AboutSection';
-import { ActivitySection } from './components/activity/ActivitySection';
-import { ContactSection } from './components/contact/ContactSection';
 import { Footer } from './components/layout/Footer';
+import { HomePage } from './pages/HomePage';
+import { ProjectDetailPage } from './pages/ProjectDetailPage';
 
 export const App = () => {
-  const [data] = useState(() => initialPortfolioData);
   const [loading, setLoading] = useState(true);
 
   return (
     <div className="relative min-h-screen bg-[#09090b] text-zinc-100 selection:bg-zinc-800 selection:text-white font-sans">
-      {/* Short Elegant Loading Screen */}
+      {/* Short Elegant Loading Screen on Initial Visit */}
       {loading && (
         <SimpleLoadingScreen onComplete={() => setLoading(false)} />
       )}
 
-      {/* Clean Navigation (15.5px typography, prominent presence) */}
+      {/* Global Navigation */}
       <Navbar />
 
-      {/* Main Content Sections with Unified Spacing Rhythm */}
+      {/* Routes */}
       <main className="relative z-10">
-        {/* 1. Hero */}
-        <HeroSection profile={data.profile} />
-
-        {/* 2. Selected Work (4 major projects with visible 24px gap) */}
-        <ProjectsSection />
-
-        {/* 3. Research & Explorations (Editorial list with visible 24px gap) */}
-        <ResearchSection />
-
-        {/* 4. About & Background */}
-        <AboutSection 
-          profile={data.profile} 
-          certifications={data.certifications} 
-          leadership={data.leadership} 
-        />
-
-        {/* 5. Activity & Live Platforms */}
-        <ActivitySection />
-
-        {/* 6. Elsewhere */}
-        <ContactSection profile={data.profile} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/work/:projectId" element={<ProjectDetailPage />} />
+          <Route path="*" element={<HomePage />} />
+        </Routes>
       </main>
 
-      {/* Minimal Footer */}
+      {/* Global Minimal Footer with Social Icons */}
       <Footer />
     </div>
   );
