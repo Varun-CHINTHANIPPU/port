@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, GitCommit, ShieldCheck } from 'lucide-react';
 import { fetchLivePlatformStats } from '../../services/statsService';
 import { LightReflectiveCard } from '../common/LightReflectiveCard';
 
@@ -19,13 +19,13 @@ export const ActivitySection = () => {
         {/* Section Header */}
         <div className="section-header space-y-4 mb-16">
           <span className="text-zinc-500 font-mono text-sm tracking-wider uppercase font-semibold">
-            Platforms
+            Platforms &amp; Activity
           </span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Activity &amp; Platforms
+            Activity &amp; Contributions
           </h2>
           <p className="text-zinc-300 text-lg sm:text-xl leading-relaxed">
-            Where I write code, solve mathematical cryptography challenges, and practice security engineering.
+            Where I write code, commit open-source systems, solve mathematical cryptography challenges, and practice security engineering.
           </p>
         </div>
 
@@ -52,13 +52,18 @@ export const ActivitySection = () => {
                 </a>
               </div>
 
-              <div className="space-y-2 pt-1">
+              <div className="space-y-2.5 pt-1">
                 <h3 className="text-xl sm:text-2xl font-bold text-zinc-100">
                   {item.value}
                 </h3>
-                <p className="text-zinc-400 text-base leading-relaxed">
+                <p className="text-zinc-300 text-base leading-relaxed">
                   {item.secondaryValue}
                 </p>
+                {item.details && (
+                  <p className="text-zinc-500 text-xs sm:text-sm font-mono pt-1">
+                    {item.details}
+                  </p>
+                )}
               </div>
             </LightReflectiveCard>
           ))}

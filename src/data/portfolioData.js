@@ -15,7 +15,7 @@ export const initialPortfolioData = {
       details: "Specializing in Applied Cryptography, Distributed Security, and Low-Level Systems."
     },
     links: {
-      github: "https://github.com/varunchinthanippu",
+      github: "https://github.com/Varun-CHINTHANIPPU",
       linkedin: "https://linkedin.com/in/varunchinthanippu",
       tryhackme: "https://tryhackme.com/p/varunch",
       cryptohack: "https://cryptohack.org/user/varunch",
@@ -94,7 +94,7 @@ export const initialPortfolioData = {
       challenges: "Interoperability between Java Bouncy Castle ASN.1 structures and native OpenSSL CLI tools during cross-verification of DER/PEM encoding.",
       results: "Achieved 100% detection of simulated MITM and expired/revoked certificate injection in automated test suites.",
       links: {
-        github: "https://github.com/varunchinthanippu/custom-pki-infrastructure",
+        github: "https://github.com/Varun-CHINTHANIPPU/custom-pki-infrastructure",
         demo: "#"
       }
     },
@@ -113,7 +113,7 @@ export const initialPortfolioData = {
       challenges: "Constructing an RFC 5280-compliant ASN.1 DER parser capable of handling nested SEQUENCE, OID, and UTCTime/GeneralizedTime structures safely without buffer overreads.",
       results: "Successfully validated all primitive outputs against NIST CAVP test vectors and RFC 5280 reference test certificates.",
       links: {
-        github: "https://github.com/varunchinthanippu/crypto-primitives-from-scratch",
+        github: "https://github.com/Varun-CHINTHANIPPU/crypto-primitives-from-scratch",
         demo: "#"
       }
     },
@@ -132,7 +132,7 @@ export const initialPortfolioData = {
       challenges: "Evaluating post-quantum hybrid key encapsulation (Kyber-768 + X25519) packet fragmentation across standard network MTUs.",
       results: "Zero legacy protocol exposure, validated 1-RTT handshake negotiation, and documented performance benchmarks across x86 and ARM platforms.",
       links: {
-        github: "https://github.com/varunchinthanippu/tls13-protocol-hardening",
+        github: "https://github.com/Varun-CHINTHANIPPU/tls13-protocol-hardening",
         demo: "#"
       }
     },
@@ -151,7 +151,7 @@ export const initialPortfolioData = {
       challenges: "Synchronizing parallel file chunk streams without incurring lock contention or memory bloat on large archive payloads.",
       results: "25% performance improvement on multi-gigabyte datasets; 60% compression ratio; containerized for zero-dependency CI/CD deployment.",
       links: {
-        github: "https://github.com/varunchinthanippu/zipper-encryption-pipeline",
+        github: "https://github.com/Varun-CHINTHANIPPU/zipper-encryption-pipeline",
         demo: "#"
       }
     },
@@ -170,7 +170,7 @@ export const initialPortfolioData = {
       challenges: "Accurately emulating the x86 EFLAGS register state (Zero, Carry, Overflow, Sign flags) across complex arithmetic and logical instructions.",
       results: "Zero memory leaks verified via Valgrind; successfully simulated and neutralized stack buffer overflow exploit payloads in sandbox tests.",
       links: {
-        github: "https://github.com/varunchinthanippu/x86-cpu-simulator-security",
+        github: "https://github.com/Varun-CHINTHANIPPU/x86-cpu-simulator-security",
         demo: "#"
       }
     },
@@ -189,7 +189,7 @@ export const initialPortfolioData = {
       challenges: "Resolving circular dependencies during cross-toolchain bootstrapping and ensuring deterministic, reproducible builds from raw source archives.",
       results: "Created a lean, bootable, hardened Linux environment adhering to CIS Benchmark security baselines with 15% faster build automation.",
       links: {
-        github: "https://github.com/varunchinthanippu/hardened-lfs-automation",
+        github: "https://github.com/Varun-CHINTHANIPPU/hardened-lfs-automation",
         demo: "#"
       }
     }
@@ -205,7 +205,7 @@ export const initialPortfolioData = {
       status: "Published & Open Source",
       abstract: "Explores zero-knowledge succinct non-interactive arguments of knowledge (zk-SNARKs) to achieve verifiable computation without revealing private witness data. Engineered custom arithmetic circuits in Circom and integrated SnarkJS for client-side cryptographic proof generation and Groth16 verification.",
       technologies: ["Zero-Knowledge Proofs", "Circom", "SnarkJS", "Groth16", "R1CS Arithmetic Circuits", "Privacy Engineering"],
-      paperLink: "https://github.com/varunchinthanippu/zk-snark-privacy-proofs",
+      paperLink: "https://github.com/Varun-CHINTHANIPPU/zk-snark-privacy-proofs",
       readTime: "8 min read"
     },
     {
@@ -217,7 +217,7 @@ export const initialPortfolioData = {
       status: "Technical Whitepaper",
       abstract: "An exhaustive comparative evaluation of NIST standardized post-quantum key encapsulation mechanisms (ML-KEM / Kyber-512/768/1024) integrated alongside classical ECDH (Curve25519). Analyzes packet fragmentation, MTU boundaries, and handshake latency under high-loss network conditions to mitigate 'harvest now, decrypt later' threats.",
       technologies: ["Post-Quantum Cryptography", "ML-KEM (Kyber)", "ML-DSA (Dilithium)", "Hybrid Key Exchange", "TLS 1.3 Performance"],
-      paperLink: "https://github.com/varunchinthanippu/pqc-hybrid-migration-analysis",
+      paperLink: "https://github.com/Varun-CHINTHANIPPU/pqc-hybrid-migration-analysis",
       readTime: "12 min read"
     },
     {
@@ -229,7 +229,7 @@ export const initialPortfolioData = {
       status: "Protocol Study",
       abstract: "Detailed architectural breakdown of X.509 v3 extensions (BasicConstraints, KeyUsage, SubjectAltName, NameConstraints) and Certificate Transparency (CT) log verification to prevent rogue intermediate CA issuance and enforce strict trust chain path validation.",
       technologies: ["X.509 v3", "RFC 5280 / RFC 6818", "Certificate Transparency", "CAB Forum Guidelines", "Revocation Mechanics"],
-      paperLink: "https://github.com/varunchinthanippu/x509-rfc5280-compliance",
+      paperLink: "https://github.com/Varun-CHINTHANIPPU/x509-rfc5280-compliance",
       readTime: "10 min read"
     }
   ],
